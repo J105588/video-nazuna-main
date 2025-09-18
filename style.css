@@ -1,0 +1,138 @@
+/* --- 基本設定 --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #111;
+    color: white;
+}
+
+/* --- メインのオープニング画面 --- */
+.op-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden; /* ラッパー自体もoverflow: hidden推奨 */
+}
+
+.title-block {
+    text-align: center;
+}
+
+.title-box {
+    position: relative;
+}
+
+.main-title {
+    font-family: 'Montserrat', sans-serif;
+    /* 【改善案】clampでレスポンシブ対応 */
+    font-size: clamp(3rem, 15vw, 9rem);
+    color: white;
+    position: relative;
+    opacity: 0; /* JSでアニメーション */
+    letter-spacing: 0.05em;
+}
+
+#backstage-trigger {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+#backstage-trigger:hover {
+    color: #ffd700; /* ホバー時に金色っぽく */
+    text-shadow: 0 0 10px #ffd700;
+}
+
+.sub-title {
+    font-family: 'Dancing Script', cursive;
+    /* 【改善案】clampでレスポンシブ対応 */
+    font-size: clamp(1.5rem, 6vw, 4rem);
+    color: #eee;
+    margin-top: 1rem;
+    opacity: 0; /* JSでアニメーション */
+    color: #ffd700; /* 金色に変更 */
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5); /* 任意: 金色のほのかな輝きを追加 */
+}
+
+.glow {
+    position: absolute;
+    top: 50%;
+    /* 【改善案】CSSで完全に左に隠す */
+    left: -100%;
+    width: 100%;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 70%);
+    transform: translateY(-50%) skewX(-20deg);
+    opacity: 0;
+    pointer-events: none; /* クリックイベントを透過させる */
+}
+
+
+/* --- 舞台裏モーダル --- */
+.backstage-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    display: none; /* 初期状態は非表示 */
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* JSでアニメーション */
+    z-index: 1000;
+}
+
+.photo-container {
+    text-align: center;
+}
+
+.photo-container img {
+    /* 【改善案】画像のレスポンシブ対応 */
+    max-width: 90vw;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.photo-container img:hover {
+    transform: scale(1.02);
+}
+
+.photo-container p {
+    /* 【改善案】筆記体とレスポンシブ対応 */
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    color: #f0f0f0;
+    margin-top: 1.5rem;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+.close-button {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 3rem;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.close-button:hover {
+    color: white;
+    transform: rotate(90deg);
+}
